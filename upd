@@ -1,0 +1,83 @@
+48] Saema Miftah: 	session_start();
+	require('dbinfo.php');
+
+	$db=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
+
+
+	if(!$db)
+	{
+		die("no db connection");
+	}
+
+	if($_POST['login'])
+	{
+
+		$username=$_POST['username'];
+		$password=$_POST['password'];
+		$query2="SELECT * FROM registration1 WHERE username='$username' AND password='$password'";
+		$result=mysqli_query($db,$query2);
+		if($result && $rows=mysqli_fetch_assoc($result))
+		{
+			$_SESSION["username"]=$username;
+			header("Location: profile.php");
+		}
+		else echo "error";
+	}
+[17:08:06] Saema Miftah: <?php
+require('dbinfoo.php');
+session_start();
+
+//adding here
+$username=$_SESSION["username"];
+
+
+	//adding here
+	//selectingall
+
+
+		$query = "SELECT * FROM registration1 WHERE username='$username'";
+	
+		if (!$result=mysqli_query($connection,$query))
+		{
+			die("database connection failed " . mysqli_error($connection));
+		}
+		else
+		{
+			while($row=mysqli_fetch_assoc($result))
+			{
+			$profile=$row;
+			
+			
+			}
+
+
+		}
+[17:12:37] Saema Miftah: "<?php echo $profile['fname'] ?>"
+[19:24:09] Saema Miftah: 	if($_POST['edit'])
+		{
+			$fname=$_POST['fname'];
+
+			
+			$query4= "UPDATE registration1 SET fname='$fname' WHERE username='$username'";
+
+
+			if (!$result=mysqli_query($connection,$query4))
+		{
+			die("database connection failed " . mysqli_error($connection));
+		}
+		else
+		{
+			
+
+			echo "<h4>successful update!</h4>";
+
+
+
+
+		}
+}
+[19:26:19] Saema Miftah: error_reporting(E_ALL);
+
+// Same as error_reporting(E_ALL);
+//ini_set("error_reporting", E_ALL);
+
